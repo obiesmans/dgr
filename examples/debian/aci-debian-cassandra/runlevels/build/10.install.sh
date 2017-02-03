@@ -10,7 +10,10 @@ deb-src http://www.apache.org/dist/cassandra/debian 30x main
 deb http://ftp.debian.org/debian jessie-backports main
 EOF
 
-curl https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
+apt-get update
+apt-get install -y --force-yes curl
+
+curl https://www.apache.org/dist/cassandra/KEYS | apt-key add -
 
 apt-get update
 apt-get install -y --force-yes cassandra cassandra-tools
