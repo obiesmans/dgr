@@ -10,14 +10,7 @@ deb-src http://www.apache.org/dist/cassandra/debian 30x main
 deb http://ftp.debian.org/debian jessie-backports main
 EOF
 
-gpg --keyserver pgp.mit.edu --recv-keys F758CE318D77295D
-gpg --export --armor F758CE318D77295D | apt-key add -
-
-gpg --keyserver pgp.mit.edu --recv-keys 2B5C1B00
-gpg --export --armor 2B5C1B00 | apt-key add -
-
-gpg --keyserver pgp.mit.edu --recv-keys 0353B12C
-gpg --export --armor 0353B12C | apt-key add -
+curl https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
 
 apt-get update
 apt-get install -y --force-yes cassandra cassandra-tools
