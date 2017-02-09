@@ -10,12 +10,14 @@ deb-src http://www.apache.org/dist/cassandra/debian 30x main
 deb http://ftp.debian.org/debian jessie-backports main
 EOF
 
-apt-cache policy openjdk-8-jre-headless
 
 apt-get install -y --force-yes curl
 curl https://www.apache.org/dist/cassandra/KEYS | apt-key add -
 
 apt-get update
+
+apt-cache policy openjdk-8-jre-headless
+
 apt-get install -y --force-yes cassandra cassandra-tools
 
 chown -R cassandra: /etc/cassandra
