@@ -117,24 +117,13 @@ func (aci *Aci) cleanupRun(builderHash string, stage1Hash string) {
 }
 
 func (aci *Aci) Build() error {
-	aci.checkDependencies()
+	aci.prepareDependencies()
 	return aci.RunBuilderCommand(common.CommandBuild)
 }
 
 func (aci *Aci) CleanAndBuild() error {
 	aci.Clean()
 	return aci.Build()
-}
-
-func (aci *Aci) checkDependencies() {
-	aci.checkWg.Add(2)
-	if !aci.args.ParallelBuild {
-		aci.checkCompatibilityVersions()
-		aci.checkLatestVersions()
-	} else {
-		go aci.checkCompatibilityVersions()
-		go aci.checkLatestVersions()
-	}
 }
 
 func (aci *Aci) prepareStage1aci() (string, error) {

@@ -171,7 +171,7 @@ func (aci *Aci) buildTestAci() (string, error) {
 	if err := testAci.CleanAndBuild(); err != nil {
 		return "", errs.WithEF(err, aci.fields, "Build of test aci failed")
 	}
-	hash, err := Home.Rkt.Fetch(aci.target + pathTestsTarget + pathImageAci)
+	hash, err := Home.Rkt.FetchInsecure(aci.target + pathTestsTarget + pathImageAci)
 	if err != nil {
 		return "", errs.WithEF(err, aci.fields, "fetch of test aci failed")
 	}
